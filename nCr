@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+int factorial(int n){
+    int fact =1;
+    for(int i=1;i<=n;i++){
+        fact=fact*i;
+        
+    }
+    return fact;
+}
+int nCr(int n,int r){
+    int fct_n=factorial(n);
+    int fct_r=factorial(r);
+    int fct_nmr=factorial(n-r);
+    return fct_n/(fct_r*fct_nmr);
+}
+int main(){
+    int n=8,r=3;
+  cout<<nCr(n,r)<<endl;
+  return 0;
+    
+}
