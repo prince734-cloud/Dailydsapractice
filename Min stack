@@ -1,0 +1,37 @@
+ stack<pair<int , int>> s;
+    MinStack() {
+        
+    }
+
+    
+    void push(int val) {
+        if(s.empty()){
+            s.push({val , val});
+        }
+        else{
+            int minval=min(val , s.top().second);
+            s.push({val , minval});
+
+        }
+        
+    }
+    
+    void pop() {
+        if(s.empty()){
+            return ;
+        } else{
+            s.pop();
+        }
+        
+    }
+    
+    int top() {
+       return  s.top().first;
+        
+    }
+    
+    int getMin() {
+     return  s.top().second;
+        
+    }
+};
