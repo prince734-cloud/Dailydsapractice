@@ -1,0 +1,108 @@
+#include <iostream>
+using namespace std;
+ class Node{
+    public:
+     int data;
+     Node* next;
+     Node(int val){
+          data=val;
+          next=NULL;
+     }
+ };
+ 
+ class circularlist{
+     Node* head;
+     Node* tail;
+    public:
+    circularlist(){
+     head=tail=NULL;
+ }
+ void push_front(int val){
+     Node* newnode =new Node(val);
+     if(head==NULL){
+         head=tail=newnode;
+         tail->next=head;
+     }
+     else{
+         newnode->next=head;
+         head=newnode;
+         tail->next=head;
+     }
+ }
+  void print(){
+      if(head==NULL) return ;
+      cout<<head->data<<"->";
+      Node* temp=head->next;
+      
+      while(temp!=head){
+          cout<<temp->data<<"->";
+          temp=temp->next;
+      }
+      cout<< temp->data <<endl; //this will show us there is cycle in list
+  }
+  
+  void insertattail(int val){
+      Node* newnode = new Node(val);
+      if(head==NULL){
+          head=tail=newnode;
+          tail->next=head;
+      }
+      else{
+          newnode->next=head;
+          tail->next=newnode;
+          tail=newnode;
+      }
+  }
+  void deleteathead(){
+      if(head==NULL){
+          cout<<"no value for deletion";
+      }
+      if(head==tail){
+          delete head;
+          head=tail=NULL;
+      }
+      else{
+          Node *temp=head;
+          head=head->next;
+          tail->next=head;
+          temp->next=NULL;
+          delete temp;
+          
+      }
+  }
+  void deleteattail(){
+      if(head==NULL){
+         return;
+      } else if(head==tail) {
+          
+      } else{
+          Node* temp=tail;
+          Node* prev=head;
+          while(prev->next!=tail){
+              prev=prev->next;
+          }
+          tail=prev;
+          tail->next=head;
+          temp->next=NULL;
+          delete temp;
+      }
+  }
+};
+
+int main()
+{
+    circularlist cll;
+    cll.push_front(3);
+    cll.push_front(2);
+    cll.push_front(7);
+    cll.insertattail(5);
+    cll.insertattail(6);
+    cll.deleteathead();//delete 7 from the ll
+    cll.deleteattail();//delete 6 from the ll
+    
+    cll.print();
+   
+    
+
+    return 0;
+}
