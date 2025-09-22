@@ -1,4 +1,4 @@
-int maxAscendingSum(vector<int>& nums) {
+int maxAscendingSum(vector<int>& nums) {  // {10,20,30,5,10,50}
         int currsum =nums[0];
         int maxsum = nums[0];
         for(int i=1;i<nums.size();i++){
