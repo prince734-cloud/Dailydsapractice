@@ -1,0 +1,32 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int maxsubarryofk(vector<int>& arr , int k ){
+    int n= arr.size();
+    int i=0, j=0;
+    int sum=0,maxsum =0;
+    while(j<n){
+        sum+=arr[j];
+        if(j-i+1<k){
+            j++;
+        }
+        else if (j-i+1==k){
+            maxsum=max(maxsum , sum);
+            sum= sum-arr[i];
+            i++;
+            j++;
+        }
+    }
+    return maxsum;
+}
+
+int main()
+{
+    vector<int> arr={2,3,10,1,7,8};
+  int k= 3;
+  int ans = maxsubarryofk(arr , k);
+  cout<<ans<<endl;
+    
+
+    return 0;
+}
