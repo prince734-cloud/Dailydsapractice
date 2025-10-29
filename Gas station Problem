@@ -1,0 +1,21 @@
+ int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int tg =0 ,tc =0;
+        int st =0, currgas =0;
+        for(int i=0;i<gas.size();i++){
+            tg+=gas[i];
+            tc+=cost[i];
+            currgas +=(gas[i]-cost[i]);
+
+            if(currgas<0){
+                st =i+1;
+                currgas =0;
+            }
+
+
+        }
+        if( tg < tc)
+        return -1; 
+
+        return st;
+        
+    }
