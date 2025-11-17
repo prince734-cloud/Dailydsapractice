@@ -1,0 +1,34 @@
+ vector<int> findAnagrams(string s, string p) {
+        vector<int> result;
+        int n = s.size(), m = p.size();
+        if (n < m) return result;
+
+        // Frequency counts for 'a' to 'z'
+        vector<int> freqP(26, 0), freqWindow(26, 0);
+        for (char c : p) {
+            freqP[c - 'a']++;
+        }
+
+        // Initialize the first window of size m-1
+        for (int i = 0; i < m - 1; i++) {
+            freqWindow[s[i] - 'a']++;
+        }
+
+        // Slide the window through s
+        for (int i = m - 1; i < n; i++) {
+            // Add the new character on the right
+            freqWindow[s[i] - 'a']++;
+            // Now window covers [i-m+1 .. i]
+            
+            // Compare window freq with p freq
+            if (freqWindow == freqP) {
+                result.push_back(i - m + 1);
+            }
+
+            // Remove the leftmost character for next window
+            freqWindow[s[i - m + 1] - 'a']--;
+        }
+
+        return result;
+    }
+
