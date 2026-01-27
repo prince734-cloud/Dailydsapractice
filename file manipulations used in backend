@@ -1,0 +1,38 @@
+const fs = require('node:fs');
+
+fs.writeFile("hello.txt" , "hello world " , function(err){
+    if(err) console.error(err)
+    else console.log("File is created successfully.");
+})
+fs.appendFile("hello.txt" , " My Name Is Prince Yadav" , function(err){
+    if(err) console.error(err);
+    else console.log("File is created successfully.");
+})
+
+fs.rename("hello.txt" ,"renamedfile.txt" , function(err){
+    if(err) console.error(err);
+    else console.log("File is Renamed Successfully. ");
+})
+
+fs.copyFile("renamedfile.txt" , "./copy/copyfile.txt" , function(err){
+    if(err) console.error(err);
+    else console.log("File is copied Successfully. ");
+})
+ 
+// handle error by showing message only if directory not exists
+ /*fs.copyFile("renamedfile.txt" , "./copy3/copyfile.txt" , function(err){
+    if(err) console.error(err.message);
+    else console.log("File is copied Successfully. ");
+}) */
+
+// delete  original file (hello.txt)
+fs.unlink("renamedfile.txt" , function(err){
+    if(err) console.error(err);
+    else console.log("File is Deleted Successfully.");
+})
+
+// used to delete empty directory by defalut
+fs.rmdir("./copy/copy2", function(err){
+    if(err) console.error(err);
+    else console.log("Directory is Deleted Successfully.");
+})
