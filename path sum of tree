@@ -1,0 +1,31 @@
+ bool sumpath(TreeNode* root ,int targetsum , int sum){
+        if(root == NULL){
+            return false;
+        }
+         sum +=root->val;
+        if(root->left==NULL && root->right == NULL){
+
+            if(sum==targetsum){
+                return true;
+
+            }
+            else{
+                return false;
+
+            }
+
+        }
+        bool left= sumpath(root->left, targetsum , sum);
+        bool right= sumpath(root->right, targetsum , sum);
+        
+        return right || left ;
+    }
+    bool hasPathSum(TreeNode* root, int targetSum ){
+         
+        bool ans = sumpath(root , targetSum , 0);
+       
+        return ans;
+
+
+        
+    }
