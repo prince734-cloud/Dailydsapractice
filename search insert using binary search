@@ -1,0 +1,18 @@
+ int helper(vector<int>& nums , int target , int st , int end){
+        int mid = st+(end-st)/2;
+        while(st<=end){
+            if(target==nums[mid]) return mid;
+            else if(target<nums[mid]){
+               return helper(nums , target , st , mid-1);
+            }
+            else{
+              return  helper(nums, target , mid+1 , end);
+            }
+        }
+        return mid;
+    }
+    int searchInsert(vector<int>& nums, int target) {
+        
+        int end = nums.size()-1;
+        return  helper(nums , target ,0,end);
+    }
