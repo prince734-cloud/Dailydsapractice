@@ -1,0 +1,12 @@
+ int findDuplicate(vector<int>& nums) {
+        unordered_map<int , int> map;
+
+        for(int x : nums){
+            if(map.find(x) != map.end()){
+                return x;
+            }
+            map[x]=2;
+        }
+        return -1;
+        
+    }
