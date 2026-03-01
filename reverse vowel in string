@@ -1,0 +1,18 @@
+string reverseVowels(string s) {
+        int n = s.size()-1;
+        int left =0;
+    while(left <n){
+        while(left < n  && ! isVowel(s[left])){
+            left++;       
+    }
+     while(left < n  && ! isVowel(s[n])){
+            n--;
+           
+    }
+    if(left<n){
+        swap(s[left] , s[n]);
+        left++ , n--;
+    }
+    }
+    return s;
+    }
