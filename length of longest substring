@@ -1,0 +1,42 @@
+*int lengthOfLongestSubstring(string s) {
+    unordered_set<char> st;
+    
+    int left = 0, right = 0;
+    int maxlen = 0;
+
+    while (right < s.size()) {
+
+        if (st.find(s[right]) == st.end()) {
+            st.insert(s[right]);
+            maxlen = max(maxlen, right - left + 1);
+            right++;
+        } 
+        else {
+            st.erase(s[left]);
+            left++;
+        }
+    }
+
+    return maxlen;
+} */
+
+int lengthOfLongestSubstring(string s) {
+    vector<int> st(256, -1);
+
+    int maxlen = 0;
+    int left = 0;
+
+    for(int right = 0; right < s.size(); right++) {
+
+        if(st[s[right]] >= left){
+            left = st[s[right]] + 1;
+        }
+
+        st[s[right]] = right;
+
+        int len = right - left + 1;
+        maxlen = max(maxlen, len);
+    }
+
+    return maxlen;
+}
