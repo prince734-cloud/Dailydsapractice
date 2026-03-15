@@ -1,0 +1,25 @@
+bool isSubsequence(string s, string t) {
+
+        int n = s.size();
+        int m= t.size();
+        int i=0;
+        int j=0;
+        while(i<n){
+            if(s[i]!=t[j]){
+                j++;
+        
+            }
+        
+                i++;j++;
+               
+        
+        }
+        if(j==m) return false;
+        else{
+        
+        return true;
+        }
+
+        
+        
+    }
