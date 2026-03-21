@@ -1,0 +1,7 @@
+ bool isPerfectSquare(int num) {
+        double x=sqrt(num);
+        int a = x;
+        if(x==a) return true;
+        return false;
+        
+    }
