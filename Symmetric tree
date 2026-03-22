@@ -1,0 +1,14 @@
+bool isSymmetrichelper(TreeNode* leftn , TreeNode* rightn){
+    if(leftn==NULL && rightn==NULL) return true;
+    if(leftn==NULL || rightn==NULL||leftn->val !=rightn->val) return false;
+
+    return isSymmetrichelper(leftn->left , rightn->right) && isSymmetrichelper(leftn->right,rightn->left);
+
+  }
+    bool isSymmetric(TreeNode* root) {
+        if(root==NULL )return true;
+
+        return isSymmetrichelper(root->left , root->right);
+
+        
+    }
