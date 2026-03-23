@@ -1,0 +1,19 @@
+ vector<vector<string>> groupAnagrams(vector<string>& strs) {
+       unordered_map<string,vector<string>> mp;
+       vector<vector<string>> ans;
+
+       for(auto key : strs){
+        string val = key;
+        sort(key.begin() , key.end());
+
+        mp[key].push_back(val);
+       }
+
+       for(auto y : mp){
+        
+        ans.push_back(y.second);
+       }
+       
+   
+        return ans;
+    }
