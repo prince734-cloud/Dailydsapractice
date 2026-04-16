@@ -1,0 +1,39 @@
+ vector<int> asteroidCollision(vector<int>& asteroids) {
+        stack<int> st;
+
+        for(int a : asteroids){
+
+            //collison happen
+            while(!st.empty() && a<0 &&st.top()>0){
+                int sum= a+st.top();
+                if(sum>0){ //destroy negative one 
+                    a=0;
+                }
+                else if(sum<0){
+                    //destroy positive one 
+                    st.pop();
+                }
+                else {
+                    //when sum==0 destroy both 
+                    a=0;
+                    st.pop();
+                }
+
+            }
+            if(a!=0){
+            st.push(a);
+            }
+            
+        }
+        int s=st.size(); //store remaning asteroids in array
+        vector<int> ans(s);
+        int i= s-1;
+        while(!st.empty()){
+            ans[i]=st.top();
+            st.pop();
+            i--;
+
+        }
+        return ans;
+        
+    }
