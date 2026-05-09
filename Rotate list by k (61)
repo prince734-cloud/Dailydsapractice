@@ -1,0 +1,20 @@
+ListNode* rotateRight(ListNode* head,int k){
+    ListNode* curr=head;
+    int n=1;
+    if(head==NULL ||head->next==NULL ||k==0) return head;
+    while(curr->next!=NULL){
+        curr=curr->next;
+        n++;
+    }
+    k=k%n;
+    curr->next=head; //circular list
+    ListNode* temp=head; //new tail
+    int step=n-k-1;
+    while(step--){
+        temp=temp->next;
+    }
+    ListNode* newhead=temp->next;
+    temp->next=NULL;
+    return newhead;
+        
+}
