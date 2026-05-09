@@ -1,0 +1,35 @@
+ int calPoints(vector<string>& operations) {
+        stack<int> st;
+        int sum=0;
+       
+        for(string ch : operations){
+    
+            if(ch!="C" && ch!="D" && ch!= "+"){
+                int a = stoi(ch);
+                st.push(a);
+            }
+            else if(ch=="C"){
+                st.pop();
+            }
+            else if(ch=="D"){
+                st.push(2*st.top());
+
+            }
+            else{ //+
+            int  x=st.top();
+             st.pop();
+             int y=st.top();
+             st.push(x);
+             st.push(x+y);
+
+            }
+        }
+        while(!st.empty()){
+            sum+=st.top();
+            st.pop();
+        }
+        return sum;
+        
+       
+        
+    }
