@@ -1,0 +1,58 @@
+/*class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int left=0;
+        int right=0;
+        int maxlen=0;
+        int maxfreq=0;
+        vector<int> mp(26,0);
+
+        while(right<s.size()){
+            mp[s[right]-'A']++;
+            maxfreq=max(maxfreq,mp[s[right]-'A']);
+            while((right-left+1)-maxfreq>k){
+                mp[s[left]-'A']--;
+                maxfreq=0;
+                for(int i=0;i<26;i++){
+                   maxfreq=max(maxfreq,mp[i]);
+                   left=left+1 ;
+                }
+            }
+            if((right-left+1)-maxfreq<=k){
+                maxlen=max(maxlen,right-left+1);
+            }
+            right++;
+        }
+        return maxlen;
+    }
+}; */
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int left = 0;
+        int maxlen = 0;
+        int maxfreq = 0;
+        vector<int> count(26, 0);
+
+        for (int right = 0; right < s.length(); ++right) {
+            // Increment frequency of current character
+            count[s[right] - 'A']++;
+            
+            // Track the maximum frequency seen in any valid window so far
+            maxfreq = max(maxfreq, count[s[right] - 'A']);
+
+            // Current window size minus max frequency gives number of replacements needed.
+            // If replacements needed > k, shrink window from the left.
+            while ((right - left + 1) - maxfreq > k) {
+                count[s[left] - 'A']--;
+                left++;
+            }
+
+            // Record maximum valid window length
+            maxlen = max(maxlen, right - left + 1);
+        }
+
+        return maxlen;
+    }
+};
