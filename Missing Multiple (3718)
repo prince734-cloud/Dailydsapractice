@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) {
+        
+        unordered_set<int> mp;
+        for(int ele : nums){
+            mp.insert(ele);
+        }
+
+        for(int i=1;;i++){
+            int x = k*i;
+
+            if(mp.find(x)==mp.end()){
+                return x;
+            }
+
+        }
+    }
+};
