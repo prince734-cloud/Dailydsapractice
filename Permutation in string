@@ -1,0 +1,33 @@
+
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        int n1 = s1.size();
+        int n2 = s2.size();
+
+        if (n1 > n2) return false;
+
+        // 1. Build frequency map for s1
+        vector<int> mp(26, 0);
+        for (char ch : s1) {
+            mp[ch - 'a']++;
+        }
+
+        
+        for (int i = 0; i <= n2 - n1; i++) {
+            vector<int> window_mp(26, 0);
+            
+            // Count frequencies in the current window of length s1.size()
+            for (int j = 0; j < n1; j++) {
+                window_mp[s2[i + j] - 'a']++;
+            }
+
+            // If frequencies match s1's frequencies, permutation found
+            if (window_mp == mp) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
