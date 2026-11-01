@@ -1,0 +1,78 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+/*void bubble_sort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        bool isswap = false;
+        
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                isswap = true;
+            }
+        }
+        
+        // If no elements were swapped during this pass, the array is already sorted
+        if (!isswap) {
+            return;
+        }
+    }
+} */
+
+/*void selection_sort(vector<int>& arr){
+    int n= arr.size();
+    for(int i=0;i<n-1;i++){
+        int smallidx=i;
+        for(int j=i+1;j<n;j++){
+            if(arr[j]<arr[smallidx]){
+                smallidx=j;
+            }
+        }
+            swap(arr[i],arr[smallidx]);
+    
+  }
+} */
+
+void insertion_sort(vector<int>& arr){
+    int n= arr.size();
+    
+    for(int i=1;i<n;i++){
+       int curr=arr[i];
+        int prev=i-1;
+        while(prev>=0 && arr[prev]>curr){
+            arr[prev+1]=arr[prev];
+            prev--;
+        }
+        arr[prev+1]=curr;
+    }
+}
+
+void print_sort(vector<int>& arr) {
+   // bubble_sort(arr);
+   //selection_sort(arr);
+   insertion_sort(arr);
+    for (int i = 0; i < arr.size(); i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> arr = {2, 5, 3, 8, 99, 23, 93, 456, 958, 3};
+    print_sort(arr);
+    return 0;
+}
